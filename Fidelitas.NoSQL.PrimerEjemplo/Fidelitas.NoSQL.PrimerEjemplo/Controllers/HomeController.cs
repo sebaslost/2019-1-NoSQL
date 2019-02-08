@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fidelitas.NoSQL.PrimerEjemplo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -34,5 +35,11 @@ namespace Fidelitas.NoSQL.PrimerEjemplo.Controllers
         {
             return View();
         }
+        [HttpPost]//Se invoca como accion de summit.
+        public ActionResult SayHelloToSomebody(MessageMode1 elModelo)
+        {
+            return View("ShowMessageFromSomebody", elModelo);
+        }
+       
     }
 }

@@ -171,6 +171,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\SayHello.cshtml" />
     <Content Include="Views\Home\SayHelloToSomebody.cshtml" />
+    <Content Include="Views\Home\ShowMessageFromSomebody.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
