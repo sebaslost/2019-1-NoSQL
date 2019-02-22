@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Fidelitas.NoSQL.PrimerEjemplo.Connections;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace Fidelitas.NoSQL.PrimerEjemplo.Controllers
         //ctor+dobletap crea el metodo
         public AnimalController()
         {
-            var server = new MongoClient();
+            var server = new MongoClient(System.Configuration.ConfigurationManager.AppSettings.Get("mongoConnection"));
+            var database = server.GetDatabase(System.Configuration.ConfigurationManager.AppSettings.Get("databaseName"));
+            var animales = database.GetCollection<Animales>("animales");
         }
 
 

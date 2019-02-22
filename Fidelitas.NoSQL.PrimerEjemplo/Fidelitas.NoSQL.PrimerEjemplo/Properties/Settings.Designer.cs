@@ -31,5 +31,14 @@ namespace Fidelitas.NoSQL.PrimerEjemplo.Properties {
                 return ((string)(this["mongoConnection"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("veterinaria")]
+        public string databaseName {
+            get {
+                return ((string)(this["databaseName"]));
+            }
+        }
     }
 }
