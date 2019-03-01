@@ -1,5 +1,11 @@
-﻿using Fidelitas.NoSQL.PrimerEjemplo.Connections;
+﻿using Fidelitas.NoSql.PrimerEjemplo.Collections;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
@@ -10,16 +16,16 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
         public AnimalController()
         {
             var connectionString = Properties.Settings.Default.mongoConnection;
-            var client = new MongoClient(connectionString);
+            var client = new MongoClient (connectionString);
             database = client.GetDatabase(Properties.Settings.Default.databaseName);
-        }
+       }
 
 
         // GET: Animal
         public JsonResult Index()
         {
             var animales = database.GetCollection<Animales>("animales");
-            var res = Json(new { id = 1, hello = "world" });
+            var res = Json (new { id = 1, hello = "world" } );
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 
@@ -30,14 +36,14 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
         }
 
         // GET: Animal/Create
-        public ActionResult Create()
+        public ActionResult Insertar()
         {
             return View();
         }
 
         // POST: Animal/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Insertar(Animales laMascota)
         {
             try
             {
