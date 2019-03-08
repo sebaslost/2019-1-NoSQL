@@ -1,4 +1,5 @@
 ﻿using Fidelitas.NoSql.PrimerEjemplo.Collections;
+using Fidelitas.NoSql.PrimerEjemplo.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -12,21 +13,38 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
 {
     public class AnimalController : Controller
     {
-        public IMongoDatabase database;
-        public AnimalController()
-        {
-            var connectionString = Properties.Settings.Default.mongoConnection;
-            var client = new MongoClient (connectionString);
-            database = client.GetDatabase(Properties.Settings.Default.databaseName);
-       }
+        /*
+         * {
+    "_id" : ObjectId("5c7890162e132d0a74ea1316"),
+    "Nombre" : "firulais",
+    "fecha" : ISODate("2005-01-01T06:00:00.000Z"),
+    "Tipo" : "hamster",
+    "Dueno" : "pepito",
+    "Peso" : 5,
+    "tratamiento" : null
+}
+
+            {
+    "_id" : ObjectId("5c7893ec2e132d045802429d"),
+    "Nombre" : "Chita",
+    "fecha" : ISODate("1989-01-01T06:00:00.000Z"),
+    "Tipo" : "Chimpancé",
+    "Dueno" : "Tarzán",
+    "Peso" : 10,
+    "tratamiento" : null
+}
+         * 
+         */
+
+        private ContextoMongo elContexto = new ContextoMongo();
 
 
         // GET: Animal
-        public JsonResult Index()
+        public ActionResult Index()
         {
-            var animales = database.GetCollection<Animales>("animales");
-            var res = Json (new { id = 1, hello = "world" } );
-            return Json(res, JsonRequestBehavior.AllowGet);
+            var animales = elContexto.LosAnimales;
+            var losAnimalitos = animales.AsQueryable().ToList();
+            return View(losAnimalitos);
         }
 
         // GET: Animal/Details/5
@@ -47,7 +65,8 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                var animales = elContexto.LosAnimales;
+                animales.InsertOne(laMascota);
 
                 return RedirectToAction("Index");
             }
