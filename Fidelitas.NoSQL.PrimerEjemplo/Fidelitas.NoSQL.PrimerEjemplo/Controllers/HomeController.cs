@@ -1,11 +1,11 @@
-﻿using Fidelitas.NoSQL.PrimerEjemplo.Models;
+﻿using Fidelitas.NoSql.PrimerEjemplo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Fidelitas.NoSQL.PrimerEjemplo.Controllers
+namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
 {
     public class HomeController : Controller
     {
@@ -27,19 +27,22 @@ namespace Fidelitas.NoSQL.PrimerEjemplo.Controllers
 
             return View();
         }
+
         public ActionResult SayHello()
         {
             return View();
         }
+
         public ActionResult SayHelloToSomebody()
         {
             return View();
         }
-        [HttpPost]//Se invoca como accion de summit.
-        public ActionResult SayHelloToSomebody(MessageMode1 elModelo)
+
+        [HttpPost]
+        public ActionResult SayHelloToSomebody(MessageModel elModelo)
         {
             return View("ShowMessageFromSomebody", elModelo);
         }
-       
+
     }
 }

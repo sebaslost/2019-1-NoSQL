@@ -162,8 +162,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Collections\Animales.cs" />
+    <Compile Include="Collections\Peliculas.cs" />
     <Compile Include="Controllers\AnimalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PeliculasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,6 +224,8 @@
     <Content Include="Views\Home\ShowMessageFromSomebody.cshtml" />
     <Content Include="Views\Animal\Insertar.cshtml" />
     <Content Include="Views\Animal\Index.cshtml" />
+    <Content Include="Views\Peliculas\Peliculas.cshtml" />
+    <Content Include="Views\Peliculas\Insertar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Fidelitas.NoSQL.PrimerEjemplo")]
+[assembly: AssemblyTitle("Fidelitas.NoSql.PrimerEjemplo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Fidelitas.NoSQL.PrimerEjemplo")]
+[assembly: AssemblyProduct("Fidelitas.NoSql.PrimerEjemplo")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1948e64b-f237-492c-863a-831a2901271c")]
+[assembly: Guid("d906437f-3659-4fde-8707-b4ac52213bd1")]
 
 // Version information for an assembly consists of the following four values:
 //

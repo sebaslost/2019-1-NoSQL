@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Fidelitas.NoSQL.PrimerEjemplo.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Fidelitas.NoSql.PrimerEjemplo.MvcApplication" Language="C#" %>

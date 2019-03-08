@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Fidelitas.NoSQL.PrimerEjemplo
+namespace Fidelitas.NoSql.PrimerEjemplo
 {
     public class FilterConfig
     {
