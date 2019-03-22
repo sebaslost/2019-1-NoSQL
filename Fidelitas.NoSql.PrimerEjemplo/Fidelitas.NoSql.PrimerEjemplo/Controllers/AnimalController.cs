@@ -42,9 +42,10 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
         // GET: Animal
         public ActionResult Index()
         {
-            var animales = elContexto.LosAnimales;
+            return View();
+            /*var animales = elContexto.LosAnimales;
             var losAnimalitos = animales.AsQueryable().ToList();
-            return View(losAnimalitos);
+            return View(losAnimalitos);*/
         }
 
         // GET: Animal/Details/5
@@ -54,7 +55,7 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
         }
 
         // GET: Animal/Create
-        public ActionResult Insertar()
+        /*public ActionResult Insertar()
         {
             return View();
         }
@@ -63,7 +64,7 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
         [HttpPost]
         public ActionResult Insertar(Animales laMascota)
         {
-            try
+            /*try
             {
                 var animales = elContexto.LosAnimales;
                 animales.InsertOne(laMascota);
@@ -73,8 +74,8 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
             catch
             {
                 return View();
-            }
-        }
+            }*/
+        
 
         // GET: Animal/Edit/5
         public ActionResult Edit(int id)
