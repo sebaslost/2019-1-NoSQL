@@ -8,6 +8,8 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using MongoDB.Driver.Linq;
 
 namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
 {
@@ -38,24 +40,49 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
 
         private ContextoMongo elContexto = new ContextoMongo();
 
+        public ActionResult LosTratamientos(string id)
+        {
+            var animales = elContexto.LosAnimales;
+            //var filter = Builders<Animales>.Filter.Eq(x => x._id, id);
+
+            var elAnimalito = animales.Find<Animales>(a => a._id == id).FirstOrDefault();
+            return View(elAnimalito.tratamiento);
+        }
+
 
         // GET: Animal
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, string searchString, int? page)
         {
-            return View();
-            /*var animales = elContexto.LosAnimales;
-            var losAnimalitos = animales.AsQueryable().ToList();
-            return View(losAnimalitos);*/
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            var animales = elContexto.LosAnimales;
+            var losAnimalitos = animales.AsQueryable();
+            if (!String.IsNullOrEmpty(searchString))
+                losAnimalitos = losAnimalitos.Where(
+                    s => s.Nombre.ToLower().Contains(searchString.ToLower())
+                    || s.Dueno.ToUpper().Contains(searchString.ToUpper()));
+            return View(losAnimalitos.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Animal/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             return View();
         }
 
         // GET: Animal/Create
-        /*public ActionResult Insertar()
+        public ActionResult Insertar()
         {
             return View();
         }
@@ -64,9 +91,10 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
         [HttpPost]
         public ActionResult Insertar(Animales laMascota)
         {
-            /*try
+            try
             {
                 var animales = elContexto.LosAnimales;
+                laMascota.tratamiento = new List<Tratamiento> ();
                 animales.InsertOne(laMascota);
 
                 return RedirectToAction("Index");
@@ -74,18 +102,18 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
             catch
             {
                 return View();
-            }*/
-        
+            }
+        }
 
         // GET: Animal/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             return View();
         }
 
         // POST: Animal/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, FormCollection collection)
         {
             try
             {
@@ -100,14 +128,14 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Controllers
         }
 
         // GET: Animal/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             return View();
         }
 
         // POST: Animal/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {

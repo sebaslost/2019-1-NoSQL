@@ -17,11 +17,11 @@ namespace Fidelitas.NoSql.PrimerEjemplo.Models
             database = client.GetDatabase(Properties.Settings.Default.databaseName);
         }
 
-        public IMongoCollection<Peliculas> LasPeliculas
+        public IMongoCollection<Animales> LosAnimales
         {
             get
             {
-                return (database.GetCollection<Peliculas>("cliente"));
+                return (database.GetCollection<Animales>("animales"));
             }
             set
             {
